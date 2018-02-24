@@ -48,7 +48,7 @@ else()
       -Wwrite-strings
       -fdiagnostics-show-option
       #---- OK, but not the annoying ones ------
-      #-Wno-error=overloaded-virtual
+      -Wno-error=overloaded-virtual
       )
 endif ()
 
@@ -64,31 +64,31 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OPTIMIZE_FLAGS} ${ERROR_CXXFLAGS} ${SA
 # libraries this project uses.  Any pkg-config library can be named here.
 ObFindLibs(project ${OB_PREFER_LIB_TYPE}
   libAfferent
-  libGreenhouse
-  libNoodoo
-  libTwillig
-  libWebThing
+  libGreenhouse2
+  libNoodoo2
+  libTwillig2
+  # libWebThing2   # Uncomment to use WebThing
 )
 
 SET (project_source_files
-  src/main.cpp
+  src/{{project_name}}.cpp
 )
 include_directories("include" "src")
 
 # Finally, build the app!
 add_executable({{project_name}} ${project_source_files})
+# Apps that use cef need this to work around awkwardness about
+# how CEF finds its data files:
+#cef_bless_app({{project_name}})   # Uncomment to use WebThing
 target_link_libraries({{project_name}} ${project_LDFLAGS})
 set_target_properties({{project_name}} PROPERTIES
    COMPILE_FLAGS "${project_CFLAGS}"
 )
-# Apps that use cef need this to work around awkwardness about
-# how CEF finds its data files:
-cef_bless_app({{project_name}})
 
-# We'd normally do
-#INSTALL(TARGETS {{project_name}} RUNTIME DESTINATION "bin")
-# but apps that use cef have to do this instead:
-cef_install_blessed_app({{project_name}})
+# We normally do
+INSTALL(TARGETS {{project_name}} RUNTIME DESTINATION "bin")  # comment to use WebThing
+# but apps that use WebThing (i.e. cef) have to do this instead:
+#cef_install_blessed_app({{project_name}})   # uncomment to use WebThing
 
 
 #------------- Tell user what happened ----------------------------------------

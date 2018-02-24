@@ -1,10 +1,10 @@
 # {{project_name}}
-An amazing greenhouse project.
+An amazing greehouse2 project.
 
 
 # The project.yaml file
 
-[project.yaml](project.yaml) contains all the information for building and running your greenhouse application, if you use `obi` as your project runner tool.  It lets you specify launch options such as command arguments, environment vars, etc.
+[project.yaml](project.yaml) contains all the information for building and running your greehouse2 application, if you use `obi` as your project runner tool.  It lets you specify launch options such as command arguments, environment vars, etc.
 
 When running on your own machine (`obi go`), obi uses information from the `localhost` room in [project.yaml](project.yaml). 
 
