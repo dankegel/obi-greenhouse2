@@ -1,6 +1,12 @@
 # /* (c) oblong industries */
 
-cmake_minimum_required (VERSION 3.6.2)
+# Want cmake with fix for https://gitlab.kitware.com/cmake/cmake/issues/16293
+# yobuild's 3.6.2 and upstream's 3.7.0 are ok.
+# Ubuntu 17.04 has cmake 3.7.2, which is great.
+# However, ubuntu 16.04's 3.5.1 is otherwise ok, so let developers slide for now
+#cmake_minimum_required (VERSION 3.7.0)   # ideal
+#cmake_minimum_required (VERSION 3.6.2)   # good if you have yobuild's cmake on PATH
+cmake_minimum_required (VERSION 3.5.1)    # expedient, but may test against installed copy
 
 project({{project_name}} CXX)
 
@@ -112,3 +118,5 @@ MESSAGE("SANITIZER_FLAGS:        ${SANITIZER_FLAGS}")
 MESSAGE("")
 MESSAGE("--------- Final global compiler flags -----------------------")
 MESSAGE("CMAKE_CXX_FLAGS:        ${CMAKE_CXX_FLAGS}")
+MESSAGE("project_CFLAGS:         ${project_CFLAGS}")
+MESSAGE("project_LDFLAGS:        ${project_LDFLAGS}")
